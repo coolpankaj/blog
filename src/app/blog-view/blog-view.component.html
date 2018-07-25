@@ -1,0 +1,43 @@
+<ngx-spinner></ngx-spinner>
+<div class="container" *ngIf="currentBlog">
+  <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3 text-center">
+    <h3 class="font-weight-bold">{{currentBlog.title}}</h3>
+    <div>
+      <h5 class="lead pb-2 border-bottom">{{currentBlog.subHeading}}</h5><br>
+      <p class="border-bottom text-truncate" [innerHtml]="[currentBlog.bodyHtml]"></p><br>
+      <!-- We can display the html using the above -->
+      <!-- OR -->
+
+      <!-- We can display the normal text in normal way. -->
+      <!-- <p class="py-3">{{currentBlog.bodyHtml}}</p> -->
+
+      <div *ngIf="currentBlog.category" class="border-bottom">
+        <b>Category:
+          <span class="font-weight-light">{{currentBlog.category}}</span>
+        </b>
+      </div><br>
+      <h6 class="border-bottom">
+        <b>Author:
+          <span class="font-weight-light">{{currentBlog.author}}</span>
+        </b>
+      </h6><br>
+      <p class="border-bottom">
+        <span>
+          <b>{{currentBlog.created | date}}</b>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="row d-flex text-center">
+    <div class="col-md-4">
+      <button type="button" class="btn btn-info" (click) ="goBackToPreviousPage()">Go Back</button>
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-warning px-4" [routerLink]="['/edit',currentBlog.blogId]">Edit</button>
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-danger" (click)="deleteThisBlog()">Delete</button>
+    </div>
+  </div>
+  <br><br>
+</div>
